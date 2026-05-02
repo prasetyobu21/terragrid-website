@@ -1,0 +1,153 @@
+---
+// src/components/Benefits.astro
+---
+<section class="benefits-section" id="benefits">
+    <div class="benefits-container">
+        <h2 class="benefits-title">Clean Energy, No Compromises.</h2>
+        
+        <div class="benefits-grid">
+            <!-- Column 1 -->
+            <div class="benefit-card">
+                <div class="icon-wrapper">
+                    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                        <circle cx="12" cy="11" r="3"></circle>
+                        <path d="M12 8v.01"></path>
+                        <path d="M12 14v.01"></path>
+                        <path d="M9.88 9.88l.01.01"></path>
+                        <path d="M14.12 14.12l.01.01"></path>
+                        <path d="M14.12 9.88l.01.01"></path>
+                        <path d="M9.88 14.12l.01.01"></path>
+                    </svg>
+                </div>
+                <h3>Transparent Pricing</h3>
+                <p>Lock in your energy rates. No hidden fees, no surprise hikes—just reliable power at a predictable monthly cost.</p>
+            </div>
+
+            <!-- Column 2 -->
+            <div class="benefit-card">
+                <div class="icon-wrapper">
+                    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect>
+                        <path d="M12 18h.01"></path>
+                        <path d="M8 13l2-2 2 2 4-4"></path>
+                    </svg>
+                </div>
+                <h3>Smart Grid Integration</h3>
+                <p>Our AI-driven app monitors your energy consumption in real-time, automatically shifting power usage to off-peak hours to maximize savings.</p>
+            </div>
+
+            <!-- Column 3 -->
+            <div class="benefit-card">
+                <div class="icon-wrapper">
+                    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                        <line x1="16" y1="2" x2="16" y2="6"></line>
+                        <line x1="8" y1="2" x2="8" y2="6"></line>
+                        <line x1="3" y1="10" x2="21" y2="10"></line>
+                        <path d="M9 16l2 2 4-4"></path>
+                    </svg>
+                </div>
+                <h3>Zero-Hassle Installation</h3>
+                <p>From permits to panel mounting, our certified local teams handle 100% of the setup in under 48 hours.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+    .benefits-section {
+        padding: 8rem 2rem;
+        background-color: var(--bg-dark);
+        color: var(--text-white);
+        display: flex;
+        justify-content: center;
+        position: relative;
+        z-index: 10;
+    }
+
+    .benefits-container {
+        max-width: 1200px;
+        width: 100%;
+    }
+
+    .benefits-title {
+        font-size: clamp(2.5rem, 5vw, 4rem);
+        font-weight: 800;
+        letter-spacing: -0.04em;
+        text-align: center;
+        margin-bottom: 5rem;
+        color: #ffffff;
+    }
+
+    .benefits-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 2.5rem;
+    }
+
+    .benefit-card {
+        background: rgba(255, 255, 255, 0.03);
+        border: 1px solid rgba(255, 255, 255, 0.05);
+        border-radius: 24px;
+        padding: 3rem 2.5rem;
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .benefit-card:hover {
+        background: rgba(255, 255, 255, 0.06);
+        border-color: rgba(255, 255, 255, 0.15);
+        transform: translateY(-8px);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+    }
+
+    .icon-wrapper {
+        width: 70px;
+        height: 70px;
+        background: rgba(255, 255, 255, 0.05);
+        border-radius: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 2rem;
+        color: #ffffff;
+        transition: transform 0.4s ease, background 0.4s ease;
+    }
+
+    .benefit-card:hover .icon-wrapper {
+        transform: scale(1.1);
+        background: rgba(255, 255, 255, 0.1);
+    }
+
+    .benefit-card h3 {
+        font-size: 1.4rem;
+        font-weight: 600;
+        letter-spacing: -0.02em;
+        margin-bottom: 1rem;
+        color: #ffffff;
+    }
+
+    .benefit-card p {
+        font-size: 1.05rem;
+        line-height: 1.6;
+        color: var(--text-gray);
+        opacity: 0.8;
+    }
+
+    @media (max-width: 768px) {
+        .benefits-section {
+            padding: 5rem 1.5rem;
+        }
+        
+        .benefits-title {
+            margin-bottom: 3rem;
+        }
+
+        .benefit-card {
+            padding: 2rem 1.5rem;
+        }
+    }
+</style>

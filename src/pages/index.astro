@@ -1,0 +1,346 @@
+---
+// src/pages/index.astro
+import Button from '../components/Button.astro';
+import Navbar from '../components/Navbar.astro';
+import Benefits from '../components/Benefits.astro';
+import Process from '../components/Process.astro';
+import Testimonial from '../components/Testimonial.astro';
+import CTA from '../components/CTA.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="viewport" content="width=device-width" />
+		<meta name="generator" content={Astro.generator} />
+		<title>TerraGrid - Powering Tomorrow, Today</title>
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+	</head>
+	<body>
+		<Navbar />
+		<main>
+			<section class="animation-container">
+				<!-- Social Proof Title (Hidden initially, appears in Frame 3) -->
+				<div class="social-title">
+					<h2>Trusted by forward-thinking partners<br>across the globe</h2>
+				</div>
+
+				<!-- The Morphing Canvas -->
+				<div class="canvas-box">
+					<!-- Background Image -->
+					<div class="bg-layer"></div>
+					<!-- Dark Overlay -->
+					<div class="overlay-layer"></div>
+					
+					<!-- Frame 1 Content (Hero Text) -->
+					<div class="hero-content">
+						<h1>Powering Tomorrow, Today.</h1>
+						<p>Switch to 100% renewable energy effortlessly. TerraGrid provides smart solar and wind solutions for modern homes, cutting your carbon footprint and your utility bills.</p>
+						<div class="cta-container">
+							<Button href="#estimate" variant="primary">Get a Free Estimate</Button>
+							<Button href="#how-it-works" variant="secondary">See How It Works</Button>
+						</div>
+					</div>
+
+					<!-- Frame 3 Content (Logos inside the box) -->
+					<div class="logos-grid">
+						<div class="logo-item"><img src="/partners-logo/Logo1.svg" alt="Partner Logo 1" class="partner-logo-img" /></div>
+						<div class="logo-item"><img src="/partners-logo/Logo2.svg" alt="Partner Logo 2" class="partner-logo-img" /></div>
+						<div class="logo-item"><img src="/partners-logo/Logo3.svg" alt="Partner Logo 3" class="partner-logo-img" /></div>
+						<div class="logo-item"><img src="/partners-logo/Logo4.svg" alt="Partner Logo 4" class="partner-logo-img" /></div>
+						<div class="logo-item"><img src="/partners-logo/Logo5.svg" alt="Partner Logo 5" class="partner-logo-img" /></div>
+						<div class="logo-item"><img src="/partners-logo/Logo6.svg" alt="Partner Logo 6" class="partner-logo-img" /></div>
+						<div class="logo-item"><img src="/partners-logo/Logo7.svg" alt="Partner Logo 7" class="partner-logo-img" /></div>
+						<div class="logo-item"><img src="/partners-logo/Logo8.svg" alt="Partner Logo 8" class="partner-logo-img" /></div>
+						<div class="logo-item"><img src="/partners-logo/Logo9.svg" alt="Partner Logo 9" class="partner-logo-img" /></div>
+						<div class="logo-item"><img src="/partners-logo/Logo10.svg" alt="Partner Logo 10" class="partner-logo-img" /></div>
+					</div>
+				</div>
+			</section>
+
+			<Benefits />
+			<Process />
+			<Testimonial />
+			<CTA />
+		</main>
+		<Footer />
+
+		<script>
+			import { gsap } from "gsap";
+			import { Observer } from "gsap/Observer";
+
+			gsap.registerPlugin(Observer);
+
+			let isAnimating = false;
+			let currentState = 0; // 0 = Hero, 1 = Partners
+
+			const tl = gsap.timeline({
+				paused: true,
+				onComplete: () => {
+					isAnimating = false;
+					currentState = 1;
+					// Unlock scroll so user can scroll down to Benefits
+					document.body.style.overflow = ""; 
+				},
+				onReverseComplete: () => {
+					isAnimating = false;
+					currentState = 0;
+				}
+			});
+
+			/* TIMELINE SEQUENCE */
+			// Speed up the timeline slightly for a snappier feel
+			tl.to(".hero-content", {
+				autoAlpha: 0,
+				y: -40,
+				duration: 0.6,
+				ease: "power2.out"
+			}, 0);
+
+			tl.to(".canvas-box", {
+				width: () => Math.min(window.innerWidth * 0.9, 1200) + "px",
+				height: "65vh",
+				borderRadius: "32px",
+				duration: 0.8,
+				ease: "power2.inOut"
+			}, 0);
+
+			tl.to(".canvas-box", {
+				y: "8vh",
+				duration: 0.6,
+				ease: "power2.out"
+			}, 0.7);
+
+			tl.fromTo(".social-title", 
+				{ opacity: 0, y: 20 }, 
+				{ opacity: 1, y: 0, duration: 0.6, ease: "power2.out" }, 
+			0.7);
+
+			tl.fromTo(".logo-item", 
+				{ opacity: 0, y: 30, scale: 0.9 }, 
+				{ opacity: 1, y: 0, scale: 1, stagger: 0.05, duration: 0.5, ease: "power2.out" }, 
+			0.7);
+
+			// Init state based on scroll position
+			if (window.scrollY === 0) {
+				document.body.style.overflow = "hidden"; // Lock initially
+			} else {
+				currentState = 1;
+				tl.progress(1); // Jump to end if loaded mid-page
+			}
+
+			// Watch for scroll intent
+			Observer.create({
+				target: window,
+				type: "wheel,touch,pointer",
+				onDown: () => {
+					if (currentState === 0 && !isAnimating && window.scrollY === 0) {
+						isAnimating = true;
+						tl.play();
+					}
+				},
+				onUp: () => {
+					if (currentState === 1 && !isAnimating && window.scrollY <= 10) {
+						isAnimating = true;
+						document.body.style.overflow = "hidden"; // Lock again while reversing
+						tl.reverse();
+					}
+				},
+				tolerance: 10
+			});
+
+			// Handle window resize gracefully for function-based values
+			window.addEventListener('resize', () => {
+				if (currentState === 1) {
+					gsap.set(".canvas-box", { width: Math.min(window.innerWidth * 0.9, 1200) + "px" });
+				}
+			});
+		</script>
+	</body>
+</html>
+
+<style>
+	:root {
+		--bg-dark: #0a0a0a;
+		--text-white: #ffffff;
+		--text-gray: #e5e7eb;
+		--primary-cta-bg: #ffffff;
+		--primary-cta-text: #0a0a0a;
+		--secondary-cta-border: rgba(255, 255, 255, 0.3);
+		--font-main: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+	}
+
+	* {
+		margin: 0;
+		padding: 0;
+		box-sizing: border-box;
+		-webkit-font-smoothing: antialiased;
+	}
+
+	body {
+		font-family: var(--font-main);
+		background-color: var(--bg-dark);
+		overflow-x: hidden;
+	}
+
+	/* The pinned wrapper acts as the White Frame base */
+	.animation-container {
+		position: relative;
+		height: 100vh;
+		width: 100vw;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		background-color: #ffffff; 
+		overflow: hidden;
+	}
+
+	/* Absolute positioning for the title to place it precisely above the box */
+	.social-title {
+		position: absolute;
+		top: 10vh;
+		width: 100%;
+		text-align: center;
+		z-index: 10;
+		padding: 0 2rem;
+		opacity: 0; /* Hidden initially via CSS, controlled by GSAP */
+	}
+
+	.social-title h2 {
+		color: #000;
+		font-size: clamp(2rem, 4vw, 3rem);
+		font-weight: 700;
+		letter-spacing: -0.02em;
+		line-height: 1.2;
+		margin: 0;
+	}
+
+	/* The Canvas that morphs */
+	.canvas-box {
+		position: relative;
+		width: 100vw;
+		height: 100vh;
+		border-radius: 0px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		overflow: hidden;
+		z-index: 5;
+		will-change: width, height, border-radius, transform;
+	}
+
+	.bg-layer {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		background-image: url('/bg_image.png');
+		background-size: cover;
+		background-position: center;
+		background-repeat: no-repeat;
+		z-index: 1;
+	}
+
+	.overlay-layer {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		background: radial-gradient(
+			circle at center,
+			rgba(0, 0, 0, 0.4) 0%,
+			rgba(0, 0, 0, 0.8) 100%
+		);
+		z-index: 2;
+	}
+
+	.hero-content {
+		position: relative;
+		z-index: 10;
+		text-align: center;
+		max-width: 900px;
+		padding: 0 2rem;
+		color: var(--text-white);
+	}
+
+	.hero-content h1 {
+		font-size: clamp(2.5rem, 8vw, 4.25rem);
+		font-weight: 800;
+		line-height: 1.05;
+		margin-bottom: 1.5rem;
+		letter-spacing: -0.04em;
+	}
+
+	.hero-content p {
+		font-size: clamp(1rem, 1.5vw, 1.125rem);
+		line-height: 1.7;
+		margin-bottom: 3rem;
+		color: var(--text-gray);
+		max-width: 600px;
+		margin-left: auto;
+		margin-right: auto;
+	}
+
+	.cta-container {
+		display: flex;
+		gap: 1.25rem;
+		justify-content: center;
+	}
+
+	/* Logos grid inside the canvas */
+	.logos-grid {
+		position: absolute;
+		width: 100%;
+		height: 100%;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		align-content: center;
+		gap: 0.5rem 2rem;
+		z-index: 4;
+		padding: 2rem;
+		flex-wrap: wrap;
+	}
+
+	.logo-item {
+		width: 140px;
+		height: 140px;
+		background: transparent;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		font-weight: 600;
+		color: #ffffff;
+		opacity: 0; /* Hidden initially via CSS, controlled by GSAP */
+	}
+
+	.partner-logo-img {
+		width: 100%;
+		max-width: 120px;
+		height: auto;
+		object-fit: contain;
+	}
+
+	@media (max-width: 640px) {
+		.cta-container {
+			flex-direction: column;
+			gap: 1rem;
+		}
+
+		.logo-item {
+			width: 100px;
+			height: 100px;
+		}
+	}
+</style>
+	height: 100px;
+		}
+	}
+</style>
