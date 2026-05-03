@@ -2,183 +2,379 @@
 // src/components/Process.astro
 ---
 
-<section class="process-section" id="how-it-works">
-    <div class="process-container">
-        <!-- Left Column: Content -->
-        <div class="process-content">
-            <h2 class="process-title">Three steps to energy independence.</h2>
-            
-            <div class="steps-list">
+<section class="prc-section" id="how-it-works">
+    <div class="prc-container">
+        
+        <div class="prc-header">
+            <h2 class="prc-title">Three steps to energy independence.</h2>
+            <p class="prc-subtitle">A seamless transition from your current grid to a sustainable future, handled entirely by our experts.</p>
+        </div>
+
+        <div class="prc-card">
+            <div class="prc-tabs-header" role="tablist">
+                <button class="prc-tab-button active" role="tab" aria-selected="true" aria-controls="pane-1" id="tab-1" data-target="pane-1">
+                    <span class="prc-tab-number">01</span>
+                    <span class="prc-tab-text">Access & Design</span>
+                </button>
+                <button class="prc-tab-button" role="tab" aria-selected="false" aria-controls="pane-2" id="tab-2" data-target="pane-2">
+                    <span class="prc-tab-number">02</span>
+                    <span class="prc-tab-text">Seamless Install</span>
+                </button>
+                <button class="prc-tab-button" role="tab" aria-selected="false" aria-controls="pane-3" id="tab-3" data-target="pane-3">
+                    <span class="prc-tab-number">03</span>
+                    <span class="prc-tab-text">Power Up</span>
+                </button>
+            </div>
+
+            <div class="prc-tabs-content">
                 <!-- Step 1 -->
-                <div class="step-item">
-                    <div class="step-number">01</div>
-                    <div class="step-details">
-                        <h3>Access</h3>
-                        <p>We analyze your roof's sun exposure and your current energy bills to build a custom system design.</p>
+                <div class="prc-tab-pane active" id="pane-1" role="tabpanel" aria-labelledby="tab-1">
+                    <div class="prc-pane-text">
+                        <h3>Custom System Design</h3>
+                        <p>We analyze your roof's sun exposure, architectural angles, and your current energy bills to engineer a bespoke solar and battery system optimized for maximum efficiency.</p>
+                    </div>
+                    <div class="prc-pane-image">
+                        <div class="prc-img-placeholder">
+                            <span>Illustration: Design Phase</span>
+                        </div>
                     </div>
                 </div>
 
                 <!-- Step 2 -->
-                <div class="step-item">
-                    <div class="step-number">02</div>
-                    <div class="step-details">
-                        <h3>Install</h3>
-                        <p>Our engineers safely install your solar array and smart battery with zero disruption to your daily life.</p>
+                <div class="prc-tab-pane" id="pane-2" role="tabpanel" aria-labelledby="tab-2">
+                    <div class="prc-pane-text">
+                        <h3>Zero-Disruption Installation</h3>
+                        <p>Our certified engineers safely install your solar array and smart battery. We handle all permits and approvals, ensuring a fast, clean setup with minimal impact on your daily life.</p>
+                    </div>
+                    <div class="prc-pane-image">
+                        <div class="prc-img-placeholder">
+                            <span>Illustration: Installation Phase</span>
+                        </div>
                     </div>
                 </div>
 
                 <!-- Step 3 -->
-                <div class="step-item">
-                    <div class="step-number">03</div>
-                    <div class="step-details">
-                        <h3>Power up</h3>
-                        <p>Turn on the system, track your generation in the TerraGrid app, and watch your meter spin backward.</p>
+                <div class="prc-tab-pane" id="pane-3" role="tabpanel" aria-labelledby="tab-3">
+                    <div class="prc-pane-text">
+                        <h3>Smart Energy Activation</h3>
+                        <p>Turn on the system, track your real-time generation in the TerraGrid app, and watch your carbon footprint—and your utility bills—drop instantly.</p>
+                    </div>
+                    <div class="prc-pane-image">
+                        <div class="prc-img-placeholder">
+                            <span>Illustration: Powering Up</span>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- Right Column: Image Placeholder -->
-        <div class="process-image-wrapper">
-            <div class="image-placeholder">
-                <span>Image Space / Placement</span>
-            </div>
-        </div>
     </div>
 </section>
 
 <style>
-    .process-section {
+    .prc-section {
         padding: 8rem 2rem;
-        background-color: #ffffff; /* Bright background for contrast against previous dark section */
-        color: #0a0a0a;
+        background-color: #ffffff; /* Clean white background */
+        color: #000000;
         display: flex;
         justify-content: center;
+        align-items: center;
         position: relative;
         z-index: 10;
+        width: 100vw;
+        left: 50%;
+        right: 50%;
+        margin-left: -50vw;
+        margin-right: -50vw;
+        box-sizing: border-box;
     }
 
-    .process-container {
-        max-width: 1200px;
+    .prc-container {
         width: 100%;
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 6rem;
-        align-items: center;
+        max-width: 1200px;
+        display: flex;
+        flex-direction: column;
+        gap: 5rem;
     }
 
-    .process-content {
-        max-width: 500px;
+    .prc-header {
+        text-align: center;
+        max-width: 800px;
+        margin: 0 auto;
     }
 
-    .process-title {
-        font-size: clamp(2.5rem, 4vw, 3.5rem);
+    .prc-title {
+        font-size: 3rem;
         font-weight: 800;
         letter-spacing: -0.04em;
-        line-height: 1.1;
-        margin-bottom: 4rem;
+        line-height: 1.05;
+        margin-bottom: 1.5rem;
         color: #000000;
     }
 
-    .steps-list {
+    .prc-subtitle {
+        font-size: 1rem;
+        color: #4b5563; /* Medium gray */
+        line-height: 1.6;
+        font-weight: 400;
+    }
+
+    /* Premium SaaS-style Card */
+    .prc-card {
+        background: #ffffff;
+        border: 1px solid #e5e7eb; /* Soft border */
+        border-radius: 24px;
+        overflow: hidden;
+        box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.05), 0 0 10px rgba(0, 0, 0, 0.02);
+    }
+
+    .prc-tabs-header {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        background: #f9fafb; /* Slight off-white to contrast the tabs */
+        border-bottom: 1px solid #e5e7eb;
+    }
+
+    .prc-tab-button {
+        background: transparent;
+        border: none;
+        border-right: 1px solid #e5e7eb;
+        padding: 2rem 1.5rem;
+        cursor: pointer;
         display: flex;
         flex-direction: column;
-        gap: 3rem;
+        align-items: center;
+        gap: 0.5rem;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        position: relative;
     }
 
-    .step-item {
-        display: flex;
-        gap: 2rem;
-        align-items: baseline;
-        /* Subtle reveal animation basis */
-        opacity: 0.9;
-        transition: transform 0.3s ease, opacity 0.3s ease;
+    .prc-tab-button:last-child {
+        border-right: none;
     }
 
-    .step-item:hover {
-        opacity: 1;
-        transform: translateX(10px);
+    /* Animated Underline for Active State */
+    .prc-tab-button::after {
+        content: '';
+        position: absolute;
+        bottom: -1px; /* Overlaps the border-bottom of the header */
+        left: 0;
+        width: 100%;
+        height: 3px;
+        background: #000000;
+        transform: scaleX(0);
+        transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     }
 
-    .step-number {
-        font-size: 1.5rem;
-        font-weight: 800;
-        color: rgba(0, 0, 0, 0.15); /* Light gray for subtle numbering */
-        font-variant-numeric: tabular-nums;
-        line-height: 1.2;
+    .prc-tab-button:hover {
+        background: #f3f4f6;
+    }
+
+    .prc-tab-button.active {
+        background: #ffffff;
+    }
+
+    .prc-tab-button.active::after {
+        transform: scaleX(1);
+    }
+
+    .prc-tab-number {
+        font-size: 0.875rem;
+        font-weight: 700;
+        color: #9ca3af;
+        letter-spacing: 0.05em;
         transition: color 0.3s ease;
     }
 
-    .step-item:hover .step-number {
-        color: rgba(0, 0, 0, 0.4);
-    }
-
-    .step-details h3 {
-        font-size: 1.5rem;
-        font-weight: 700;
-        letter-spacing: -0.02em;
-        margin-bottom: 0.75rem;
+    .prc-tab-button.active .prc-tab-number {
         color: #000000;
     }
 
-    .step-details p {
-        font-size: 1.1rem;
-        line-height: 1.6;
-        color: #4b5563; /* Medium gray */
+    .prc-tab-text {
+        font-size: 1.25rem;
+        font-weight: 600;
+        color: #6b7280;
+        transition: color 0.3s ease;
     }
 
-    .process-image-wrapper {
-        position: relative;
+    .prc-tab-button.active .prc-tab-text {
+        color: #000000;
+    }
+
+    .prc-tabs-content {
+        padding: 5rem 4rem;
+        background: #ffffff;
+    }
+
+    .prc-tab-pane {
+        display: none;
+        grid-template-columns: 1fr 1.2fr;
+        gap: 5rem;
+        align-items: center;
+        opacity: 0; /* Handled by animation */
+    }
+
+    .prc-tab-pane.active {
+        display: grid;
+        animation: prcFadeUp 0.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+    }
+
+    @keyframes prcFadeUp {
+        from {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    .prc-pane-text {
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+
+    .prc-pane-text h3 {
+        font-size: 2.25rem;
+        font-weight: 700;
+        letter-spacing: -0.03em;
+        line-height: 1.2;
+        color: #000000;
+        margin: 0;
+    }
+
+    .prc-pane-text p {
+        font-size: 1rem;
+        line-height: 1.7;
+        color: #4b5563;
+        margin: 0;
+    }
+
+    .prc-pane-image {
         width: 100%;
-        height: 100%;
-        min-height: 600px;
-        border-radius: 32px;
+        height: 450px;
+        border-radius: 16px;
         overflow: hidden;
-        /* Subtle shadow for depth */
-        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
     }
 
-    .image-placeholder {
+    .prc-img-placeholder {
         width: 100%;
         height: 100%;
-        background: #f3f4f6;
-        border: 2px dashed #d1d5db;
-        border-radius: 32px;
+        background: #f8fafc;
         display: flex;
         align-items: center;
         justify-content: center;
-        position: absolute;
-        top: 0;
-        left: 0;
-        color: #9ca3af;
-        font-size: 1.1rem;
-        font-weight: 600;
+        color: #94a3b8;
+        font-weight: 500;
+        font-size: 1.125rem;
         letter-spacing: 0.05em;
         text-transform: uppercase;
-        transition: background 0.3s ease;
+        border: 2px dashed #cbd5e1;
+        border-radius: inherit;
     }
 
-    .process-image-wrapper:hover .image-placeholder {
-        background: #e5e7eb;
-    }
-
+    /* Responsive Adjustments */
     @media (max-width: 992px) {
-        .process-container {
+        .prc-tabs-header {
             grid-template-columns: 1fr;
-            gap: 4rem;
         }
 
-        .process-content {
-            max-width: 100%;
+        .prc-tab-button {
+            border-right: none;
+            border-bottom: 1px solid #e5e7eb;
+            flex-direction: row;
+            justify-content: center;
+            gap: 1rem;
+            padding: 1.5rem;
         }
 
-        .process-title {
-            margin-bottom: 3rem;
+        .prc-tab-button:last-child {
+            border-bottom: none;
         }
 
-        .process-image-wrapper {
-            min-height: 400px;
-            order: -1; /* Place image above text on smaller screens */
+        /* Change underline to side-line for vertical tabs */
+        .prc-tab-button::after {
+            bottom: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            transform: scaleY(0);
+            transform-origin: top;
+        }
+
+        .prc-tab-button.active::after {
+            transform: scaleY(1);
+        }
+
+        .prc-tabs-content {
+            padding: 3rem 2rem;
+        }
+
+        .prc-tab-pane {
+            grid-template-columns: 1fr;
+            gap: 3rem;
+        }
+        
+        .prc-pane-image {
+            order: -1; /* Move image to top on smaller screens */
+            height: 350px;
+        }
+    }
+
+    @media (max-width: 640px) {
+        .prc-section {
+            padding: 6rem 1.5rem;
+        }
+
+        .prc-container {
+            gap: 3rem;
+        }
+
+        .prc-title {
+            font-size: 2.5rem;
+        }
+
+        .prc-tabs-content {
+            padding: 2rem 1.5rem;
         }
     }
 </style>
+
+<script>
+    function initPrcTabs() {
+        const buttons = document.querySelectorAll('.prc-tab-button');
+        const panes = document.querySelectorAll('.prc-tab-pane');
+
+        if (!buttons.length || !panes.length) return;
+
+        buttons.forEach(button => {
+            button.addEventListener('click', () => {
+                // Deactivate all buttons and hide all panes
+                buttons.forEach(b => {
+                    b.classList.remove('active');
+                    b.setAttribute('aria-selected', 'false');
+                });
+                panes.forEach(p => p.classList.remove('active'));
+
+                // Activate the clicked button
+                button.classList.add('active');
+                button.setAttribute('aria-selected', 'true');
+                
+                // Show the corresponding pane
+                const targetId = button.getAttribute('data-target');
+                const targetPane = document.getElementById(targetId);
+                if (targetPane) {
+                    targetPane.classList.add('active');
+                }
+            });
+        });
+    }
+
+    // Initialize on direct load
+    initPrcTabs();
+
+    // Initialize gracefully if Astro View Transitions are used
+    document.addEventListener('astro:page-load', initPrcTabs);
+</script>

@@ -27,6 +27,7 @@ import Footer from '../components/Footer.astro';
 				<!-- Social Proof Title (Hidden initially, appears in Frame 3) -->
 				<div class="social-title">
 					<h2>Trusted by forward-thinking partners<br>across the globe</h2>
+					<p class="social-subtitle">Leading the global transition to sustainable energy with industry-first innovations.</p>
 				</div>
 
 				<!-- The Morphing Canvas -->
@@ -110,7 +111,7 @@ import Footer from '../components/Footer.astro';
 			}, 0);
 
 			tl.to(".canvas-box", {
-				y: "8vh",
+				y: "12vh",
 				duration: 0.6,
 				ease: "power2.out"
 			}, 0.7);
@@ -207,17 +208,28 @@ import Footer from '../components/Footer.astro';
 		width: 100%;
 		text-align: center;
 		z-index: 10;
-		padding: 0 2rem;
+		padding: 0 1rem;
 		opacity: 0; /* Hidden initially via CSS, controlled by GSAP */
 	}
 
 	.social-title h2 {
 		color: #000;
-		font-size: clamp(2rem, 4vw, 3rem);
+		font-size: 3rem;
 		font-weight: 700;
 		letter-spacing: -0.02em;
 		line-height: 1.2;
 		margin: 0;
+	}
+
+	.social-subtitle {
+		color: #666;
+		font-size: 1rem;
+		margin-top: 1rem;
+		max-width: 900px;
+		margin-left: auto;
+		margin-right: auto;
+		font-weight: 400;
+		line-height: 1.5;
 	}
 
 	/* The Canvas that morphs */
@@ -279,7 +291,7 @@ import Footer from '../components/Footer.astro';
 	}
 
 	.hero-content p {
-		font-size: clamp(1rem, 1.5vw, 1.125rem);
+		font-size: 1rem;
 		line-height: 1.7;
 		margin-bottom: 3rem;
 		color: var(--text-gray);

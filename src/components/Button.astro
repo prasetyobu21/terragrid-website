@@ -8,65 +8,59 @@ interface Props {
 const { href, variant = 'primary', class: className } = Astro.props;
 ---
 
-<a href={href} class:list={['btn', `btn-${variant}`, className]}>
+<a href={href} class:list={['t-btn', `t-btn-${variant}`, className]}>
 	<slot />
 </a>
 
-<style>
-	:root {
-		--primary-cta-bg: #ffffff;
-		--primary-cta-text: #0a0a0a;
-		--secondary-cta-border: rgba(255, 255, 255, 0.3);
-		--text-white: #ffffff;
+<style is:global>
+	/* Global styling to bypass Astro scoping issues and Dev Server cache */
+	.t-btn {
+		display: inline-block !important;
+		padding: 0.8rem 1.8rem !important;
+		border-radius: 100px !important;
+		font-weight: 600 !important;
+		text-decoration: none !important;
+		font-size: 0.95rem !important;
+		transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+		position: relative !important;
+		overflow: hidden !important;
+		cursor: pointer !important;
+		user-select: none !important;
+		touch-action: manipulation !important;
+		text-align: center !important;
+		box-sizing: border-box !important;
 	}
 
-	.btn {
-		padding: 0.8rem 1.8rem;
-		border-radius: 100px;
-		font-weight: 600;
-		text-decoration: none;
-		font-size: 0.95rem;
-		transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-		display: inline-block;
-		position: relative;
-		overflow: hidden;
-		cursor: pointer;
-		user-select: none;
-		touch-action: manipulation;
-		text-align: center;
+	.t-btn-primary {
+		background: #ffffff !important;
+		color: #0a0a0a !important;
+		border: 1px solid #ffffff !important;
 	}
 
-	.btn-primary {
-		background: var(--primary-cta-bg);
-		color: var(--primary-cta-text);
-		border: 1px solid var(--primary-cta-bg);
+	.t-btn-primary:hover {
+		background: #e4e4e7 !important;
+		border-color: #e4e4e7 !important;
 	}
 
-	.btn-primary:hover {
-		background: #e4e4e7;
-		color: var(--primary-cta-text);
-		border-color: #e4e4e7;
+	.t-btn-primary:active {
+		opacity: 0.8 !important;
 	}
 
-	.btn-primary:active {
-		opacity: 0.8;
+	.t-btn-secondary {
+		border: 1px solid rgba(255, 255, 255, 0.3) !important;
+		color: #ffffff !important;
+		backdrop-filter: blur(8px) !important;
+		-webkit-backdrop-filter: blur(8px) !important;
+		background-color: rgba(255, 255, 255, 0.02) !important;
 	}
 
-	.btn-secondary {
-		border: 1px solid var(--secondary-cta-border);
-		color: var(--text-white);
-		backdrop-filter: blur(8px);
-		-webkit-backdrop-filter: blur(8px);
-		background-color: rgba(255, 255, 255, 0.02);
+	.t-btn-secondary:hover {
+		background-color: #ffffff !important;
+		color: #0a0a0a !important;
+		border-color: #ffffff !important;
 	}
 
-	.btn-secondary:hover {
-		background-color: var(--text-white);
-		color: #0a0a0a;
-		border-color: var(--text-white);
-	}
-
-	.btn-secondary:active {
-		opacity: 0.8;
+	.t-btn-secondary:active {
+		opacity: 0.8 !important;
 	}
 </style>
